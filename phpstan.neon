@@ -6,11 +6,6 @@ parameters:
         - '#Class Zend_Crypt_Rsa_Key_Public constructor invoked with 2 parameters, 1 required\.#'
         # This should probably be changed to a do/while loop instead of just while, Zend_Crypt_Math_BigInteger_Bcmath:215
         - '#Variable \$hex might not be defined\.#'
-        # Possibly issues with stubs, haven't researched
-        - '#Parameter \#1 \$gmpnumber of function gmp_strval expects resource\|string, GMP given\.#'
-        - '#Parameter \#1 \$gmpnumber of function gmp_strval expects resource\|string, int given\.#'
-        - '#Parameter \#1 \$a of function gmp_sqrt expects resource\|string, object\|resource\|string given\.#'
-        - '#Parameter \#2 \$b of function gmp_mul expects resource\|string, int given\.#'
         # These methods exist on Zend_Crypt_Math but $_math property is typehinted as Zend_Crypt_Math_BigInteger_Interface
         - '#Call to an undefined method Zend_Crypt_Math_BigInteger::fromBinary\(\)\.#'
         - '#Call to an undefined method Zend_Crypt_Math_BigInteger::toBinary\(\)\.#'
