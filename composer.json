@@ -43,5 +43,12 @@
         "test": "phpunit ./tests",
         "test-with-coverage": "phpunit --coverage-clover=clover.xml ./tests",
         "phpstan": "phpstan analyze -l7 -c phpstan.neon --no-progress ./src --ansi"
+    },
+    "suggest": {
+        "ext-openssl": "Used in various hashing/crypt algorithms",
+        "ext-hash": "Used in various hashing/crypt algorithms",
+        "ext-bcmath": "Used in various hashing/crypt algorithms",
+        "ext-gmp": "Used in various hashing/crypt algorithms",
+        "ext-mcrypt": "Used in various hashing/crypt algorithms"
     }
 }
