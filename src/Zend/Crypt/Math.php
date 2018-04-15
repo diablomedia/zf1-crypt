@@ -51,7 +51,7 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
             return mt_rand($minimum, $maximum - 1);
         }
         $rand = '';
-        $i2 = strlen($maximum) - 1;
+        $i2   = strlen($maximum) - 1;
         for ($i = 1; $i < $i2; $i++) {
             $rand .= mt_rand(0, 9);
         }
@@ -127,7 +127,7 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
             return random_int($min, $max);
         }
         // calculate number of bits required to store range on this machine
-        $r = $range;
+        $r    = $range;
         $bits = 0;
         while ($r) {
             $bits++;
@@ -137,7 +137,7 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
         $bytes  = (int) max(ceil($bits / 8), 1);
         $filter = (int) ((1 << $bits) - 1);
         do {
-            $rnd  = hexdec(bin2hex(self::randBytes($bytes, $strong)));
+            $rnd = hexdec(bin2hex(self::randBytes($bytes, $strong)));
             $rnd &= $filter;
         } while ($rnd > $range);
         return ($min + $rnd);

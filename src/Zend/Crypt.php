@@ -27,10 +27,9 @@
  */
 class Zend_Crypt
 {
-
     const TYPE_OPENSSL = 'openssl';
-    const TYPE_HASH = 'hash';
-    const TYPE_MHASH = 'mhash';
+    const TYPE_HASH    = 'hash';
+    const TYPE_MHASH   = 'mhash';
 
     protected static $_type = null;
 
@@ -86,7 +85,7 @@ class Zend_Crypt
         }
         self::_detectHashSupport($algorithm);
         $supportedMethod = '_digest' . ucfirst(self::$_type);
-        $result = self::$supportedMethod($algorithm, $data, $binaryOutput);
+        $result          = self::$supportedMethod($algorithm, $data, $binaryOutput);
         return $result;
     }
 
@@ -99,13 +98,13 @@ class Zend_Crypt
         if (function_exists('hash')) {
             self::$_type = self::TYPE_HASH;
             if (in_array($algorithm, hash_algos())) {
-               return;
+                return;
             }
         }
         if (function_exists('mhash')) {
             self::$_type = self::TYPE_MHASH;
             if (in_array($algorithm, self::$_supportedAlgosMhash)) {
-               return;
+                return;
             }
         }
         if (function_exists('openssl_digest')) {
@@ -114,7 +113,7 @@ class Zend_Crypt
             }
             self::$_type = self::TYPE_OPENSSL;
             if (in_array($algorithm, self::$_supportedAlgosOpenssl)) {
-               return;
+                return;
             }
         }
         throw new Zend_Crypt_Exception('\'' . $algorithm . '\' is not supported by any available extension or native function');
@@ -140,7 +139,7 @@ class Zend_Crypt
     protected static function _digestMhash($algorithm, $data, $binaryOutput)
     {
         $constant = constant('MHASH_' . strtoupper($algorithm));
-        $binary = mhash($constant, $data);
+        $binary   = mhash($constant, $data);
         if ($binaryOutput) {
             return $binary;
         }
@@ -160,5 +159,4 @@ class Zend_Crypt
         }
         return openssl_digest($data, $algorithm, $binaryOutput);
     }
-
 }

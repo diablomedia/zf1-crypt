@@ -28,7 +28,6 @@
  */
 class Zend_Crypt_Rsa_Key_Public extends Zend_Crypt_Rsa_Key
 {
-
     protected $_certificateString = null;
 
     public function __construct($string)
@@ -42,7 +41,7 @@ class Zend_Crypt_Rsa_Key_Public extends Zend_Crypt_Rsa_Key
      */
     protected function _parse($string)
     {
-        if (preg_match("/^-----BEGIN CERTIFICATE-----/", $string)) {
+        if (preg_match('/^-----BEGIN CERTIFICATE-----/', $string)) {
             $this->_certificateString = $string;
         } else {
             $this->_pemString = $string;
@@ -54,12 +53,11 @@ class Zend_Crypt_Rsa_Key_Public extends Zend_Crypt_Rsa_Key
         //openssl_pkey_export($result, $public);
         //$this->_pemString = $public;
         $this->_opensslKeyResource = $result;
-        $this->_details = openssl_pkey_get_details($this->_opensslKeyResource);
+        $this->_details            = openssl_pkey_get_details($this->_opensslKeyResource);
     }
 
     public function getCertificate()
     {
         return $this->_certificateString;
     }
-
 }

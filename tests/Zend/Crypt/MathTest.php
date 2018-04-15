@@ -31,7 +31,6 @@
  */
 class Zend_Crypt_MathTest extends PHPUnit\Framework\TestCase
 {
-
     public function testRand()
     {
         if (!extension_loaded('bcmath')) {
@@ -68,8 +67,8 @@ class Zend_Crypt_MathTest extends PHPUnit\Framework\TestCase
     public function testRandInteger()
     {
         for ($i = 0; $i < 1024; $i++) {
-            $min = rand(1, PHP_INT_MAX/2);
-            $max = $min + rand(1, PHP_INT_MAX/2 - 1);
+            $min  = rand(1, PHP_INT_MAX / 2);
+            $max  = $min + rand(1, PHP_INT_MAX / 2 - 1);
             $rand = Zend_Crypt_Math::randInteger($min, $max);
             $this->assertGreaterThanOrEqual($min, $rand);
             $this->assertLessThanOrEqual($max, $rand);

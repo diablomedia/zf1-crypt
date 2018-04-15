@@ -28,7 +28,6 @@
  */
 class Zend_Crypt_Rsa
 {
-
     const BINARY = 'binary';
     const BASE64 = 'base64';
 
@@ -77,7 +76,7 @@ class Zend_Crypt_Rsa
         if (isset($options['passPhrase'])) {
             $this->_passPhrase = $options['passPhrase'];
         }
-        foreach ($options as $option=>$value) {
+        foreach ($options as $option => $value) {
             switch ($option) {
                 case 'pemString':
                     $this->setPemString($value);
@@ -123,7 +122,8 @@ class Zend_Crypt_Rsa
             $opensslKeyResource = $this->_privateKey->getOpensslKeyResource();
         }
         $result = openssl_sign(
-            $data, $signature,
+            $data,
+            $signature,
             $opensslKeyResource,
             $this->getHashAlgorithm()
         );
@@ -144,9 +144,12 @@ class Zend_Crypt_Rsa
         if ($format == self::BASE64) {
             $signature = base64_decode($signature);
         }
-        $result = openssl_verify($data, $signature,
+        $result = openssl_verify(
+            $data,
+            $signature,
             $this->getPublicKey()->getOpensslKeyResource(),
-            $this->getHashAlgorithm());
+            $this->getHashAlgorithm()
+        );
         return $result;
     }
 
@@ -159,7 +162,7 @@ class Zend_Crypt_Rsa
     public function encrypt($data, Zend_Crypt_Rsa_Key $key, $format = null)
     {
         $encrypted = '';
-        $function = 'openssl_public_encrypt';
+        $function  = 'openssl_public_encrypt';
         if ($key instanceof Zend_Crypt_Rsa_Key_Private) {
             $function = 'openssl_private_encrypt';
         }
@@ -192,14 +195,14 @@ class Zend_Crypt_Rsa
 
     /**
      * @param  array $configargs
-     * 
+     *
      * @throws Zend_Crypt_Rsa_Exception
-     * 
+     *
      * @return ArrayObject
      */
     public function generateKeys(array $configargs = null)
     {
-        $config = null;
+        $config     = null;
         $passPhrase = null;
         if ($configargs !== null) {
             if (isset($configargs['passPhrase'])) {
@@ -209,19 +212,19 @@ class Zend_Crypt_Rsa
             $config = $this->_parseConfigArgs($configargs);
         }
         $privateKey = null;
-        $publicKey = null;
-        $resource = openssl_pkey_new($config);
+        $publicKey  = null;
+        $resource   = openssl_pkey_new($config);
         if (!$resource) {
             throw new Zend_Crypt_Rsa_Exception('Failed to generate a new private key');
         }
         // above fails on PHP 5.3
         openssl_pkey_export($resource, $private, $passPhrase);
         $privateKey = new Zend_Crypt_Rsa_Key_Private($private, $passPhrase);
-        $details = openssl_pkey_get_details($resource);
-        $publicKey = new Zend_Crypt_Rsa_Key_Public($details['key']);
-        $return = new ArrayObject(array(
-           'privateKey'=>$privateKey,
-           'publicKey'=>$publicKey
+        $details    = openssl_pkey_get_details($resource);
+        $publicKey  = new Zend_Crypt_Rsa_Key_Public($details['key']);
+        $return     = new ArrayObject(array(
+           'privateKey' => $privateKey,
+           'publicKey'  => $publicKey
         ), ArrayObject::ARRAY_AS_PROPS);
         return $return;
     }
@@ -234,10 +237,10 @@ class Zend_Crypt_Rsa
         $this->_pemString = $value;
         try {
             $this->_privateKey = new Zend_Crypt_Rsa_Key_Private($this->_pemString, $this->_passPhrase);
-            $this->_publicKey = $this->_privateKey->getPublicKey();
+            $this->_publicKey  = $this->_privateKey->getPublicKey();
         } catch (Zend_Crypt_Exception $e) {
             $this->_privateKey = null;
-            $this->_publicKey = new Zend_Crypt_Rsa_Key_Public($this->_pemString);
+            $this->_publicKey  = new Zend_Crypt_Rsa_Key_Public($this->_pemString);
         }
     }
 
@@ -250,7 +253,7 @@ class Zend_Crypt_Rsa
     public function setCertificateString($value)
     {
         $this->_certificateString = $value;
-        $this->_publicKey = new Zend_Crypt_Rsa_Key_Public($this->_certificateString, $this->_passPhrase);
+        $this->_publicKey         = new Zend_Crypt_Rsa_Key_Public($this->_certificateString, $this->_passPhrase);
     }
 
     public function setCertificatePath($value)
@@ -322,5 +325,4 @@ class Zend_Crypt_Rsa
         }
         return null;
     }
-
 }

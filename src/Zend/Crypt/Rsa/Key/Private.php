@@ -28,7 +28,6 @@
  */
 class Zend_Crypt_Rsa_Key_Private extends Zend_Crypt_Rsa_Key
 {
-
     protected $_publicKey = null;
 
     public function __construct($pemString, $passPhrase = null)
@@ -48,7 +47,7 @@ class Zend_Crypt_Rsa_Key_Private extends Zend_Crypt_Rsa_Key
             throw new Zend_Crypt_Exception('Unable to load private key');
         }
         $this->_opensslKeyResource = $result;
-        $this->_details = openssl_pkey_get_details($this->_opensslKeyResource);
+        $this->_details            = openssl_pkey_get_details($this->_opensslKeyResource);
     }
 
     public function getPublicKey()
@@ -58,5 +57,4 @@ class Zend_Crypt_Rsa_Key_Private extends Zend_Crypt_Rsa_Key
         }
         return $this->_publicKey;
     }
-
 }
