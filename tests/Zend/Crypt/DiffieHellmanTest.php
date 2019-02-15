@@ -113,7 +113,7 @@ class Zend_Crypt_DiffieHellmanTest extends PHPUnit\Framework\TestCase
         // skip this test if openssl DH support is not available
         if (!function_exists('openssl_dh_compute_key')) {
             $this->markTestSkipped(
-              'An openssl extension with Diffie-Hellman support is not available.'
+                'An openssl extension with Diffie-Hellman support is not available.'
             );
         }
 

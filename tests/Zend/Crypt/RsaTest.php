@@ -162,8 +162,8 @@ CERT;
         $rsa       = new Zend_Crypt_Rsa(array('pemString' => $this->_testPemString));
         $signature = $rsa->sign('1234567890');
         $this->assertEquals(
-        'sMHpp3u6DNecIm5RIkDD3xyKaH6qqP8roUWDs215iOGHehfK1ypqwoETKNP7NaksGS2C1Up813ixlGXkipPVbQ==',
-        base64_encode($signature)
+            'sMHpp3u6DNecIm5RIkDD3xyKaH6qqP8roUWDs215iOGHehfK1ypqwoETKNP7NaksGS2C1Up813ixlGXkipPVbQ==',
+            base64_encode($signature)
         );
     }
 
@@ -173,8 +173,8 @@ CERT;
         $rsa        = new Zend_Crypt_Rsa(array('certificateString' => $this->_testCertificateString));
         $signature  = $rsa->sign('1234567890', $privateKey);
         $this->assertEquals(
-        'sMHpp3u6DNecIm5RIkDD3xyKaH6qqP8roUWDs215iOGHehfK1ypqwoETKNP7NaksGS2C1Up813ixlGXkipPVbQ==',
-        base64_encode($signature)
+            'sMHpp3u6DNecIm5RIkDD3xyKaH6qqP8roUWDs215iOGHehfK1ypqwoETKNP7NaksGS2C1Up813ixlGXkipPVbQ==',
+            base64_encode($signature)
         );
     }
 
@@ -183,8 +183,8 @@ CERT;
         $rsa       = new Zend_Crypt_Rsa(array('pemString' => $this->_testPemString));
         $signature = $rsa->sign('1234567890', null, Zend_Crypt_Rsa::BASE64);
         $this->assertEquals(
-        'sMHpp3u6DNecIm5RIkDD3xyKaH6qqP8roUWDs215iOGHehfK1ypqwoETKNP7NaksGS2C1Up813ixlGXkipPVbQ==',
-        $signature
+            'sMHpp3u6DNecIm5RIkDD3xyKaH6qqP8roUWDs215iOGHehfK1ypqwoETKNP7NaksGS2C1Up813ixlGXkipPVbQ==',
+            $signature
         );
     }
 

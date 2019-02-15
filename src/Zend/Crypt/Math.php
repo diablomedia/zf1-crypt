@@ -37,7 +37,7 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
      *
      * @param string|int $minimum
      * @param string|int $maximum
-     * @return string
+     * @return string|false|int
      */
     public function rand($minimum, $maximum)
     {
