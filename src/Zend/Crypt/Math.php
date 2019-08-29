@@ -38,18 +38,28 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
      * @param string|int $minimum
      * @param string|int $maximum
      * @return string|false|int
+     * @deprecated This method should not be used because it's broken and won't return a number in the range specified
      */
     public function rand($minimum, $maximum)
     {
+        // The result of this block will return a binary string, which isn't a number between
+        // minimum and maximum.
         if (file_exists('/dev/urandom')) {
             $frandom = fopen('/dev/urandom', 'r');
             if ($frandom !== false) {
                 return fread($frandom, strlen($maximum) - 1);
             }
         }
+        // This is the only case where this method actually returns a number between minimum
+        // and maximum
         if (strlen($maximum) < 4) {
             return mt_rand($minimum, $maximum - 1);
         }
+
+        // This will return a number that is the same length as the maximum input, but there's nothing
+        // to guarantee that the returned number is greater than the minimum, or less than the maximum
+        // since it's just generating a number of strlen($maximum) using random numbers for each position
+        // in the string.
         $rand = '';
         $i2   = strlen($maximum) - 1;
         for ($i = 1; $i < $i2; $i++) {
