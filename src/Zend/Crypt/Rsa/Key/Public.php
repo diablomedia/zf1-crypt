@@ -28,8 +28,14 @@
  */
 class Zend_Crypt_Rsa_Key_Public extends Zend_Crypt_Rsa_Key
 {
+    /**
+     * @var string}null
+     */
     protected $_certificateString = null;
 
+    /**
+     * @param string $string
+     */
     public function __construct($string)
     {
         $this->_parse($string);
@@ -37,6 +43,7 @@ class Zend_Crypt_Rsa_Key_Public extends Zend_Crypt_Rsa_Key
 
     /**
      * @param string $string
+     * @return void
      * @throws Zend_Crypt_Exception
      */
     protected function _parse($string)
@@ -56,6 +63,9 @@ class Zend_Crypt_Rsa_Key_Public extends Zend_Crypt_Rsa_Key
         $this->_details            = openssl_pkey_get_details($this->_opensslKeyResource);
     }
 
+    /**
+     * @return string|null
+     */
     public function getCertificate()
     {
         return $this->_certificateString;

@@ -28,8 +28,15 @@
  */
 class Zend_Crypt_Rsa_Key_Private extends Zend_Crypt_Rsa_Key
 {
+    /**
+     * @var Zend_Crypt_Rsa_Key_Public|null
+     */
     protected $_publicKey = null;
 
+    /**
+     * @param string $pemString
+     * @param string $passPhrase
+     */
     public function __construct($pemString, $passPhrase = null)
     {
         $this->_pemString = $pemString;
@@ -37,8 +44,9 @@ class Zend_Crypt_Rsa_Key_Private extends Zend_Crypt_Rsa_Key
     }
 
     /**
-     * @param string $passPhrase
+     * @param string|null $passPhrase
      * @throws Zend_Crypt_Exception
+     * @return void
      */
     protected function _parse($passPhrase)
     {
@@ -50,6 +58,9 @@ class Zend_Crypt_Rsa_Key_Private extends Zend_Crypt_Rsa_Key
         $this->_details            = openssl_pkey_get_details($this->_opensslKeyResource);
     }
 
+    /**
+     * @return Zend_Crypt_Rsa_Key_Public
+     */
     public function getPublicKey()
     {
         if ($this->_publicKey === null) {

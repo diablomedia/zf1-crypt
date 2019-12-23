@@ -103,7 +103,7 @@ class Zend_Crypt_Hmac extends Zend_Crypt
      *
      * @param string $hash
      * @throws Zend_Crypt_Hmac_Exception
-     * @return Zend_Crypt_Hmac
+     * @return void
      */
     protected static function _setHashAlgorithm($hash)
     {
@@ -152,6 +152,8 @@ class Zend_Crypt_Hmac extends Zend_Crypt
             $bin = mhash(self::_getMhashDefinition(self::$_hashAlgorithm), $data, self::$_key);
             return bin2hex($bin);
         }
+
+        return false;
     }
 
     /**

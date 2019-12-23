@@ -31,8 +31,14 @@ class Zend_Crypt_Rsa
     const BINARY = 'binary';
     const BASE64 = 'base64';
 
+    /**
+     * @var Zend_Crypt_Rsa_Key_Private|null
+     */
     protected $_privateKey;
 
+    /**
+     * @var Zend_Crypt_Rsa_Key_Public
+     */
     protected $_publicKey;
 
     /**
@@ -40,14 +46,29 @@ class Zend_Crypt_Rsa
      */
     protected $_pemString;
 
+    /**
+     * @var string
+     */
     protected $_pemPath;
 
+    /**
+     * @var string
+     */
     protected $_certificateString;
 
+    /**
+     * @var string
+     */
     protected $_certificatePath;
 
+    /**
+     * @var int
+     */
     protected $_hashAlgorithm;
 
+    /**
+     * @var string
+     */
     protected $_passPhrase;
 
     /**
@@ -71,6 +92,9 @@ class Zend_Crypt_Rsa
         }
     }
 
+    /**
+     * @return void
+     */
     public function setOptions(array $options)
     {
         if (isset($options['passPhrase'])) {
@@ -97,11 +121,17 @@ class Zend_Crypt_Rsa
         }
     }
 
+    /**
+     * @return Zend_Crypt_Rsa_Key_Private|null
+     */
     public function getPrivateKey()
     {
         return $this->_privateKey;
     }
 
+    /**
+     * @return Zend_Crypt_Rsa_Key_Public
+     */
     public function getPublicKey()
     {
         return $this->_publicKey;
@@ -231,6 +261,7 @@ class Zend_Crypt_Rsa
 
     /**
      * @param string $value
+     * @return void
      */
     public function setPemString($value)
     {
@@ -244,24 +275,40 @@ class Zend_Crypt_Rsa
         }
     }
 
+    /**
+     * @param string $value
+     * @return void
+     */
     public function setPemPath($value)
     {
         $this->_pemPath = $value;
         $this->setPemString(file_get_contents($this->_pemPath));
     }
 
+    /**
+     * @param string $value
+     * @return void
+     */
     public function setCertificateString($value)
     {
         $this->_certificateString = $value;
         $this->_publicKey         = new Zend_Crypt_Rsa_Key_Public($this->_certificateString, $this->_passPhrase);
     }
 
+    /**
+     * @param string $value
+     * @return void
+     */
     public function setCertificatePath($value)
     {
         $this->_certificatePath = $value;
         $this->setCertificateString(file_get_contents($this->_certificatePath));
     }
 
+    /**
+     * @param string $name
+     * @return void
+     */
     public function setHashAlgorithm($name)
     {
         switch (strtolower($name)) {
@@ -291,26 +338,41 @@ class Zend_Crypt_Rsa
         return $this->_pemString;
     }
 
+    /**
+     * @return string
+     */
     public function getPemPath()
     {
         return $this->_pemPath;
     }
 
+    /**
+     * @return string
+     */
     public function getCertificateString()
     {
         return $this->_certificateString;
     }
 
+    /**
+     * @return string
+     */
     public function getCertificatePath()
     {
         return $this->_certificatePath;
     }
 
+    /**
+     * @return int
+     */
     public function getHashAlgorithm()
     {
         return $this->_hashAlgorithm;
     }
 
+    /**
+     * @return array|null
+     */
     protected function _parseConfigArgs(array $config = null)
     {
         $configs = array();

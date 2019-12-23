@@ -31,6 +31,9 @@ class Zend_Crypt
     const TYPE_HASH    = 'hash';
     const TYPE_MHASH   = 'mhash';
 
+    /**
+     * @var string
+     */
     protected static $_type = null;
 
     /**
@@ -92,6 +95,7 @@ class Zend_Crypt
     /**
      * @param string $algorithm
      * @throws Zend_Crypt_Exception
+     * @return void
      */
     protected static function _detectHashSupport($algorithm)
     {

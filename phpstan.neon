@@ -1,5 +1,7 @@
 parameters:
-    level: 7
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    level: 8
     paths:
         - ./
     excludes_analyse:
@@ -37,12 +39,6 @@ parameters:
         -
             message: '#Property Zend_Crypt_Rsa_Key::\$_details \(array\) does not accept array\|false\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Rsa/Key/Private.php
-        -
-            message: '#Parameter \#2 \$signature of function openssl_verify expects string, string\|false given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Rsa.php
-        -
-            message: '#Parameter \#1 \$data of callable .openssl_private….\|.openssl_public…. expects string, string\|false given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Rsa.php
         -
             message: '#Parameter \#1 \$value of method Zend_Crypt_Rsa::setPemString\(\) expects string, string\|false given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Rsa.php
@@ -145,3 +141,21 @@ parameters:
         -
             message: '#Parameter \#2 \$b of function gmp_add expects GMP\|int\|string, float\|int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
+        -
+            message: '#Cannot access offset .dh. on array\|false\.#'
+            path: './src/Zend/Crypt/DiffieHellman.php'
+        -
+            message: '#Cannot call method getOpensslKeyResource\(\) on Zend_Crypt_Rsa_Key_Private\|null\.#'
+            path: './src/Zend/Crypt/Rsa.php'
+        -
+            message: '#Parameter \#1 \$configargs of function openssl_pkey_new expects array, array\|null given\.#'
+            path: './src/Zend/Crypt/Rsa.php'
+        -
+            message: '#Cannot access offset .key. on array\|false\.#'
+            path: './src/Zend/Crypt/Rsa.php'
+        -
+            message: '#Parameter \#1 \$value of method Zend_Crypt_Rsa::setCertificateString\(\) expects string, string\|false given\.#'
+            path: './src/Zend/Crypt/Rsa.php'
+        -
+            message: '#Parameter \#2 \$passphrase of function openssl_get_privatekey expects string, string\|null given\.#'
+            path: './src/Zend/Crypt/Rsa/Key/Private.php'

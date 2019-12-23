@@ -79,11 +79,17 @@ class Zend_Crypt_Rsa_Key implements Countable
         return $this->toString();
     }
 
+    /**
+     * @return mixed
+     */
     public function count()
     {
         return $this->_details['bits'];
     }
 
+    /**
+     * @return mixed
+     */
     public function getType()
     {
         return $this->_details['type'];

@@ -101,6 +101,7 @@ class Zend_Crypt_Math_BigInteger
     /**
      * @param string $extension
      * @throws  Zend_Crypt_Math_BigInteger_Exception
+     * @return void
      */
     protected function _loadAdapter($extension = null)
     {
