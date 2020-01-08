@@ -29,7 +29,7 @@
 class Zend_Crypt_Rsa_Key_Public extends Zend_Crypt_Rsa_Key
 {
     /**
-     * @var string}null
+     * @var string|null
      */
     protected $_certificateString = null;
 
