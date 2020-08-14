@@ -7,7 +7,8 @@ parameters:
     excludes_analyse:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
-    bootstrap: %rootDir%/../../../phpstan-bootstrap.php
+    bootstrapFiles:
+        - phpstan-constants.php
     ignoreErrors:
         # This does only have one parameter, not sure intent here
         - '#Class Zend_Crypt_Rsa_Key_Public constructor invoked with 2 parameters, 1 required\.#'
@@ -68,9 +69,6 @@ parameters:
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
             message: '#Parameter \#2 \$right_operand of function bccomp expects string, int given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
-        -
-            message: '#Parameter \#1 \$ascii of function chr expects int, string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
             message: '#Parameter \#2 \$right_operand of function bcmod expects string, int given\.#'
@@ -159,3 +157,17 @@ parameters:
         -
             message: '#Parameter \#2 \$passphrase of function openssl_get_privatekey expects string, string\|null given\.#'
             path: './src/Zend/Crypt/Rsa/Key/Private.php'
+        # These methods will only return null if divisor == 0, but the divisor is explicitly specified as 256
+        # could probably report these as a bug to phpstan
+        -
+            message: '#Parameter \#1 \$left_operand of function bcmod expects string, string\|null given\.#'
+            path: './src/Zend/Crypt/Math/BigInteger/Bcmath.php'
+        -
+            message: '#Parameter \#1 \$left_operand of function bcdiv expects string, string\|null given\.#'
+            path: './src/Zend/Crypt/Math/BigInteger/Bcmath.php'
+        -
+            message: '#Parameter \#1 \$ascii of function chr expects int, string\|null given\.#'
+            path: './src/Zend/Crypt/Math/BigInteger/Bcmath.php'
+        -
+            message: '#Parameter \#1 \$left_operand of function bccomp expects string, string\|null given\.#'
+            path: './src/Zend/Crypt/Math/BigInteger/Bcmath.php'

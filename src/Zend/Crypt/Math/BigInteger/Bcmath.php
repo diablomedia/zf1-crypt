@@ -103,7 +103,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      *
      * @param string $left_operand
      * @param string $modulus
-     * @return string
+     * @return string|null
      */
     public function modulus($left_operand, $modulus)
     {
@@ -141,7 +141,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      * @param string $left_operand
      * @param string $right_operand
      * @param string $modulus
-     * @return string
+     * @return string|null
      */
     public function powmod($left_operand, $right_operand, $modulus)
     {

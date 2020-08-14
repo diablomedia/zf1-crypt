@@ -268,7 +268,7 @@ CERT;
     {
         $rsa = new Zend_Crypt_Rsa;
         // check to see if openssl.cnf can be found by trying to generate a key
-        $test = openssl_pkey_new();
+        $test = @openssl_pkey_new();
         if (!$test) {
             $this->markTestSkipped('Cannot generate a private key with openssl_pkey_new()');
         }
@@ -281,7 +281,7 @@ CERT;
     {
         $rsa = new Zend_Crypt_Rsa;
         // check to see if openssl.cnf can be found by trying to generate a key
-        $test = openssl_pkey_new();
+        $test = @openssl_pkey_new();
         if (!$test) {
             $this->markTestSkipped('Cannot generate a private key with openssl_pkey_new()');
         }
@@ -294,7 +294,7 @@ CERT;
     {
         $rsa = new Zend_Crypt_Rsa;
         // check to see if openssl.cnf can be found by trying to generate a key
-        $test = openssl_pkey_new();
+        $test = @openssl_pkey_new();
         if (!$test) {
             $this->markTestSkipped('Cannot generate a private key with openssl_pkey_new()');
         }
@@ -307,7 +307,7 @@ CERT;
     {
         $rsa = new Zend_Crypt_Rsa;
         // check to see if openssl.cnf can be found by trying to generate a key
-        $test = openssl_pkey_new();
+        $test = @openssl_pkey_new();
         if (!$test) {
             $this->markTestSkipped('Cannot generate a private key with openssl_pkey_new()');
         }
@@ -331,7 +331,7 @@ CERT;
     {
         $rsa = new Zend_Crypt_Rsa;
         // check to see if openssl.cnf can be found by trying to generate a key
-        $test = openssl_pkey_new();
+        $test = @openssl_pkey_new();
         if (!$test) {
             $this->markTestSkipped('Cannot generate a private key with openssl_pkey_new()');
         }
