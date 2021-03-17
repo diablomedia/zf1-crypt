@@ -141,7 +141,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      * @param string $left_operand
      * @param string $right_operand
      * @param string $modulus
-     * @return string|null
+     * @return string|false
      */
     public function powmod($left_operand, $right_operand, $modulus)
     {
@@ -152,7 +152,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      * Get the square root of an arbitrary precision number
      *
      * @param string $operand
-     * @return string
+     * @return string|null
      */
     public function sqrt($operand)
     {
@@ -186,7 +186,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
             return "\0";
         }
         while (bccomp($operand, 0) > 0) {
-            $return  = chr(bcmod($operand, 256)) . $return;
+            $return  = chr((int) bcmod($operand, 256)) . $return;
             $operand = bcdiv($operand, 256);
         }
         if (ord($return[0]) > 127) {

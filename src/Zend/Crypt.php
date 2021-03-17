@@ -144,6 +144,9 @@ class Zend_Crypt
     {
         $constant = constant('MHASH_' . strtoupper($algorithm));
         $binary   = mhash($constant, $data);
+        if ($binary === false) {
+            throw new Zend_Crypt_Exception('There was an error hashing the data with mhash');
+        }
         if ($binaryOutput) {
             return $binary;
         }

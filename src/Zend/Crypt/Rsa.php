@@ -167,7 +167,7 @@ class Zend_Crypt_Rsa
      * @param string $data
      * @param string $signature
      * @param string $format
-     * @return int
+     * @return int|false
      */
     public function verifySignature($data, $signature, $format = null)
     {
