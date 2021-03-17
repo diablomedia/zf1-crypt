@@ -1,3 +1,6 @@
+includes:
+    - phpstan-php7.php
+    - phpstan-php8.php
 parameters:
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false
@@ -26,10 +29,10 @@ parameters:
             message: '#Trying to invoke string but it might not be a callable.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt.php
         -
-            message: '#Parameter \#1 \$key of function openssl_pkey_get_details expects resource, resource\|false given\.#'
+            message: '#Parameter \#1 \$key of function openssl_pkey_get_details expects (resource|OpenSSLAsymmetricKey), (resource|OpenSSLAsymmetricKey)\|false given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/DiffieHellman.php
         -
-            message: '#Parameter \#2 \$dh_key of function openssl_dh_compute_key expects resource, string given\.#'
+            message: '#Parameter \#2 \$(dh_key|private_key) of function openssl_dh_compute_key expects (resource|OpenSSLAsymmetricKey), string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/DiffieHellman.php
         -
             message: '#Property Zend_Crypt_DiffieHellman::\$_secretKey \(string\) does not accept string\|false\.#'
@@ -56,88 +59,85 @@ parameters:
             message: '#Call to function is_float\(\) with int will always evaluate to false\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math.php
         -
-            message: '#Parameter \#1 \$data of function bin2hex expects string, string\|false given\.#'
+            message: '#Parameter \#1 \$(data|string) of function bin2hex expects string, string\|false given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math.php
         -
-            message: '#Parameter \#1 \$function of function call_user_func_array expects callable\(\): mixed, array\(Zend_Crypt_Math_BigInteger_Interface, string\) given\.#'
+            message: '#Parameter \#1 \$(function|callback) of function call_user_func_array expects callable\(\): mixed, array\(Zend_Crypt_Math_BigInteger_Interface, string\) given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger.php
         -
-            message: '#Parameter \#2 \$right_operand of function bcadd expects string, int given\.#'
+            message: '#Parameter \#2 \$(right_operand|num2) of function bcadd expects string, int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
-            message: '#Parameter \#2 \$right_operand of function bcmul expects string, int given\.#'
+            message: '#Parameter \#2 \$(right_operand|num2) of function bcmul expects string, int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
-            message: '#Parameter \#2 \$right_operand of function bccomp expects string, int given\.#'
+            message: '#Parameter \#2 \$(right_operand|num2) of function bccomp expects string, int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
-            message: '#Parameter \#2 \$right_operand of function bcmod expects string, int given\.#'
+            message: '#Parameter \#2 \$(right_operand|num2) of function bcmod expects string, int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
-            message: '#Parameter \#2 \$right_operand of function bcdiv expects string, int given\.#'
+            message: '#Parameter \#2 \$(right_operand|num2) of function bcdiv expects string, int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
             message: '#Parameter \#1 \$string of function strlen expects string, float\|int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
-            message: '#Parameter \#2 \$right_operand of function bcadd expects string, float\|int given\.#'
+            message: '#Parameter \#2 \$(right_operand|num2) of function bcadd expects string, float\|int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
-            message: '#Parameter \#1 \$a of function gmp_add expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(a|num1) of function gmp_add expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#2 \$b of function gmp_add expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#2 \$(b|num2) of function gmp_add expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$a of function gmp_sub expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(a|num1) of function gmp_sub expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#2 \$b of function gmp_sub expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#2 \$(b|num2) of function gmp_sub expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$a of function gmp_cmp expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(a|num1) of function gmp_cmp expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#2 \$b of function gmp_cmp expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#2 \$(b|num2) of function gmp_cmp expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$gmpnumber of function gmp_strval expects GMP\|int\|string, resource given\.#'
+            message: '#Parameter \#1 \$(a|num1) of function gmp_mod expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$a of function gmp_mod expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#2 \$(b|num2) of function gmp_mod expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#2 \$b of function gmp_mod expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(a|num1) of function gmp_mul expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$a of function gmp_mul expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#2 \$(b|num2) of function gmp_mul expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#2 \$b of function gmp_mul expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(base|num) of function gmp_pow expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$base of function gmp_pow expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(base|num) of function gmp_powm expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$base of function gmp_powm expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#2 \$(exp|exponent) of function gmp_powm expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#2 \$exp of function gmp_powm expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#3 \$(mod|modulus) of function gmp_powm expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#3 \$mod of function gmp_powm expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(a|num) of function gmp_sqrt expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$a of function gmp_sqrt expects GMP\|int\|string, GMP\|resource\|string given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
-        -
-            message: '#Parameter \#1 \$gmpnumber of function gmp_strval expects GMP\|int\|string, GMP\|resource\|string given\.#'
+            message: '#Parameter \#1 \$(gmpnumber|num) of function gmp_strval expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
             message: '#Parameter \#1 \$string of function strlen expects string, float\|int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#2 \$b of function gmp_add expects GMP\|int\|string, float\|int given\.#'
+            message: '#Parameter \#2 \$(b|num2) of function gmp_add expects GMP\|int\|string, float\|int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
             message: '#Cannot access offset .dh. on array\|false\.#'
@@ -146,14 +146,9 @@ parameters:
             message: '#Cannot call method getOpensslKeyResource\(\) on Zend_Crypt_Rsa_Key_Private\|null\.#'
             path: './src/Zend/Crypt/Rsa.php'
         -
-            message: '#Parameter \#1 \$configargs of function openssl_pkey_new expects array, array\|null given\.#'
-            path: './src/Zend/Crypt/Rsa.php'
-        -
             message: '#Cannot access offset .key. on array\|false\.#'
             path: './src/Zend/Crypt/Rsa.php'
         -
             message: '#Parameter \#1 \$value of method Zend_Crypt_Rsa::setCertificateString\(\) expects string, string\|false given\.#'
             path: './src/Zend/Crypt/Rsa.php'
-        -
-            message: '#Parameter \#2 \$passphrase of function openssl_get_privatekey expects string, string\|null given\.#'
-            path: './src/Zend/Crypt/Rsa/Key/Private.php'
+
