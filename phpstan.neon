@@ -7,7 +7,7 @@ parameters:
     level: 8
     paths:
         - ./
-    excludes_analyse:
+    excludePaths:
         - %rootDir%/../../../tests/*
         - %rootDir%/../../../vendor/*
     bootstrapFiles:
@@ -26,16 +26,13 @@ parameters:
         - '#Variable \$key in isset\(\) always exists and is not nullable\.#'
         - '#Variable \$hash in isset\(\) always exists and is not nullable\.#'
         -
-            message: '#Trying to invoke string but it might not be a callable.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt.php
-        -
             message: '#Parameter \#1 \$key of function openssl_pkey_get_details expects (resource|OpenSSLAsymmetricKey), (resource|OpenSSLAsymmetricKey)\|false given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/DiffieHellman.php
         -
             message: '#Parameter \#2 \$(dh_key|private_key) of function openssl_dh_compute_key expects (resource|OpenSSLAsymmetricKey), string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/DiffieHellman.php
         -
-            message: '#Property Zend_Crypt_DiffieHellman::\$_secretKey \(string\) does not accept string\|false\.#'
+            message: '#Property Zend_Crypt_DiffieHellman::\$_secretKey \(string\|null\) does not accept string\|false\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/DiffieHellman.php
         -
             message: '#Property Zend_Crypt_Rsa_Key::\$_details \(array\) does not accept array\|false\.#'
@@ -62,7 +59,7 @@ parameters:
             message: '#Parameter \#1 \$(data|string) of function bin2hex expects string, string\|false given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math.php
         -
-            message: '#Parameter \#1 \$(function|callback) of function call_user_func_array expects callable\(\): mixed, array\(Zend_Crypt_Math_BigInteger_Interface, string\) given\.#'
+            message: '#Parameter \#1 \$(function|callback) of function call_user_func_array expects callable\(\): mixed, array{Zend_Crypt_Math_BigInteger_Interface, string} given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger.php
         -
             message: '#Parameter \#2 \$(right_operand|num2) of function bcadd expects string, int given\.#'
@@ -131,9 +128,6 @@ parameters:
             message: '#Parameter \#1 \$(a|num) of function gmp_sqrt expects GMP\|int\|string, GMP\|resource\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
-            message: '#Parameter \#1 \$(gmpnumber|num) of function gmp_strval expects GMP\|int\|string, GMP\|resource\|string given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
-        -
             message: '#Parameter \#1 \$string of function strlen expects string, float\|int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Gmp.php
         -
@@ -151,4 +145,6 @@ parameters:
         -
             message: '#Parameter \#1 \$value of method Zend_Crypt_Rsa::setCertificateString\(\) expects string, string\|false given\.#'
             path: './src/Zend/Crypt/Rsa.php'
-
+        -
+            message: '#Method Zend_Crypt_DiffieHellman::getPrivateKey\(\) should return string but returns string\|null\.#'
+            path: './src/Zend/Crypt/DiffieHellman.php'

@@ -47,7 +47,7 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
         if (file_exists('/dev/urandom')) {
             $frandom = fopen('/dev/urandom', 'r');
             if ($frandom !== false) {
-                return fread($frandom, strlen($maximum) - 1);
+                return fread($frandom, strlen($maximum) !== 0 ? strlen($maximum) - 1 : strlen($maximum));
             }
         }
         // This is the only case where this method actually returns a number between minimum
