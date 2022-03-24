@@ -274,7 +274,7 @@ CERT;
         }
 
         $keys = $rsa->generateKeys(array('private_key_bits' => 512));
-        $this->assertTrue($keys instanceof ArrayObject);
+        $this->assertInstanceOf(ArrayObject::class, $keys);
     }
 
     public function testKeyGenerationCreatesPrivateKeyInArrayObject()
