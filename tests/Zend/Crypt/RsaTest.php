@@ -35,6 +35,12 @@ class Zend_Crypt_RsaTest extends PHPUnit\Framework\TestCase
 
     protected $_testPemPath = null;
 
+    protected $_testCertificatePath;
+
+    protected $_testCertificateString;
+
+    protected $_testPemStringPublic;
+
     public function setUp(): void
     {
         if (!extension_loaded('openssl')) {

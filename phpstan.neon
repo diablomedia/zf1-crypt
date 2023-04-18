@@ -4,6 +4,7 @@ includes:
 parameters:
     checkGenericClassInNonGenericObjectType: false
     checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
     level: 8
     paths:
         - ./
@@ -22,9 +23,6 @@ parameters:
         - '#Call to an undefined method Zend_Crypt_Math_BigInteger::toBinary\(\)\.#'
         - '#Call to an undefined method Zend_Crypt_Math_BigInteger::btwoc\(\)\.#'
         - '#Call to an undefined method Zend_Crypt_Math_BigInteger::rand\(\)\.#'
-        # Isset calls probably aren't necessary here, Zend_Crypt_Hmac:89|110
-        - '#Variable \$key in isset\(\) always exists and is not nullable\.#'
-        - '#Variable \$hash in isset\(\) always exists and is not nullable\.#'
         -
             message: '#Parameter \#1 \$key of function openssl_pkey_get_details expects (resource|OpenSSLAsymmetricKey), (resource|OpenSSLAsymmetricKey)\|false given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/DiffieHellman.php
@@ -53,16 +51,13 @@ parameters:
             message: '#Parameter \#1 \$string of function strlen expects string, int\|string given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math.php
         -
-            message: '#Call to function is_float\(\) with int will always evaluate to false\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math.php
-        -
             message: '#Parameter \#1 \$(data|string) of function bin2hex expects string, string\|false given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math.php
         -
             message: '#Parameter \#1 \$(function|callback) of function call_user_func_array expects callable\(\): mixed, array{Zend_Crypt_Math_BigInteger_Interface, string} given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger.php
         -
-            message: '#Parameter \#2 \$(right_operand|num2) of function bcadd expects string, int given\.#'
+            message: '#Parameter \#2 \$(right_operand|num2) of function bcadd expects string, int<0, 255> given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
             message: '#Parameter \#2 \$(right_operand|num2) of function bcmul expects string, int given\.#'
@@ -148,3 +143,7 @@ parameters:
         -
             message: '#Method Zend_Crypt_DiffieHellman::getPrivateKey\(\) should return string but returns string\|null\.#'
             path: './src/Zend/Crypt/DiffieHellman.php'
+        -
+            message: '#Constant MCRYPT_DEV_URANDOM not found\.#'
+            path: './src/Zend/Crypt/Math.php'
+            count: 1
