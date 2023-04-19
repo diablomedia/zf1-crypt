@@ -21,6 +21,11 @@ if (version_compare(PHP_VERSION, '8.0', '<')) {
                     'path'    => __DIR__ . '/src/Zend/Crypt/Math/BigInteger/Gmp.php',
                     'count'   => 1,
                 ),
+                array(
+                    'message' => '#Parameter \#1 \$a of function gmp_div expects GMP\|int\|string, GMP\|resource\|string given\.#',
+                    'path'    => __DIR__ . '/src/Zend/Crypt/Math/BigInteger/Gmp.php',
+                    'count'   => 2,
+                )
             )
         )
     );
