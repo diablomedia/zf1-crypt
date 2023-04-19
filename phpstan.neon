@@ -143,7 +143,3 @@ parameters:
         -
             message: '#Method Zend_Crypt_DiffieHellman::getPrivateKey\(\) should return string but returns string\|null\.#'
             path: './src/Zend/Crypt/DiffieHellman.php'
-        -
-            message: '#Constant MCRYPT_DEV_URANDOM not found\.#'
-            path: './src/Zend/Crypt/Math.php'
-            count: 1
