@@ -10,6 +10,7 @@
     "mhash", "mhash_count", "mhash_get_hash_name",
     "OPENSSL_ALGO_DSS1", "OPENSSL_ALGO_MD2", "OPENSSL_ALGO_MD4", "OPENSSL_ALGO_MD5", "OPENSSL_ALGO_SHA1",
     "openssl_dh_compute_key", "openssl_digest", "openssl_get_privatekey", "openssl_get_publickey", "openssl_pkey_export",
-    "openssl_pkey_get_details", "openssl_pkey_new", "openssl_sign", "openssl_verify"
+    "openssl_pkey_get_details", "openssl_pkey_new", "openssl_sign", "openssl_verify",
+    "mt_rand", "random_bytes", "random_int"
   ]
 }
