@@ -108,16 +108,16 @@ class Zend_Crypt_Math_BigInteger
         if ($extension === null) {
             if (extension_loaded('gmp')) {
                 $extension = 'gmp';
-            //} elseif (extension_loaded('big_int')) {
-            //    $extension = 'big_int';
+                //} elseif (extension_loaded('big_int')) {
+                //    $extension = 'big_int';
             } else {
                 $extension = 'bcmath';
             }
         }
         if ($extension == 'gmp' && extension_loaded('gmp')) {
             $this->_math = new Zend_Crypt_Math_BigInteger_Gmp();
-        //} elseif($extension == 'bigint' && extension_loaded('big_int')) {
-        //    $this->_math = new Zend_Crypt_Math_BigInteger_Bigint();
+            //} elseif($extension == 'bigint' && extension_loaded('big_int')) {
+            //    $this->_math = new Zend_Crypt_Math_BigInteger_Bigint();
         } elseif ($extension == 'bcmath' && extension_loaded('bcmath')) {
             $this->_math = new Zend_Crypt_Math_BigInteger_Bcmath();
         } else {

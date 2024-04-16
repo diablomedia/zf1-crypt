@@ -27,7 +27,7 @@ if (version_compare(PHP_VERSION, '8.0', '>=')) {
                     'count'   => 1,
                 ),
                 array(
-                    'message' => '#Parameter \#3 \$private_key of callable \'openssl_private…\'\|\'openssl_public…\' expects array\|OpenSSLAsymmetricKey\|OpenSSLCertificate\|string, resource given\.#',
+                    'message' => '#Parameter \#3 \$private_key\|public_key of callable \'openssl_private…\'\|\'openssl_public…\' expects array\|OpenSSLAsymmetricKey\|OpenSSLCertificate\|string, resource given\.#',
                     'path'    => __DIR__ . '/src/Zend/Crypt/Rsa.php',
                     'count'   => 2,
                 ),

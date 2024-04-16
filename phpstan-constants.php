@@ -7,3 +7,6 @@ if (!defined('OPENSSL_ALGO_MD2')) {
 if (!defined('OPENSSL_ALGO_DSS1')) {
     define('OPENSSL_ALGO_DSS1', 5);
 }
+if (!defined('MCRYPT_DEV_URANDOM')) {
+    define('MCRYPT_DEV_URANDOM', '/dev/urandom');
+}
