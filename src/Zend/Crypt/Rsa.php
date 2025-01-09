@@ -74,10 +74,9 @@ class Zend_Crypt_Rsa
     /**
      * Class constructor
      *
-     * @param array $options
      * @throws Zend_Crypt_Rsa_Exception
      */
-    public function __construct(array $options = null)
+    public function __construct(array|null $options = null)
     {
         if (!extension_loaded('openssl')) {
             throw new Zend_Crypt_Rsa_Exception('Zend_Crypt_Rsa requires openssl extension to be loaded.');
@@ -139,11 +138,10 @@ class Zend_Crypt_Rsa
 
     /**
      * @param string $data
-     * @param Zend_Crypt_Rsa_Key_Private $privateKey
      * @param string $format
      * @return string
      */
-    public function sign($data, Zend_Crypt_Rsa_Key_Private $privateKey = null, $format = null)
+    public function sign($data, Zend_Crypt_Rsa_Key_Private|null $privateKey = null, $format = null)
     {
         $signature = '';
         if (isset($privateKey)) {
@@ -224,13 +222,11 @@ class Zend_Crypt_Rsa
     }
 
     /**
-     * @param  array $configargs
-     *
      * @throws Zend_Crypt_Rsa_Exception
      *
      * @return ArrayObject
      */
-    public function generateKeys(array $configargs = null)
+    public function generateKeys(array|null $configargs = null)
     {
         $config     = null;
         $passPhrase = null;
@@ -373,7 +369,7 @@ class Zend_Crypt_Rsa
     /**
      * @return array|null
      */
-    protected function _parseConfigArgs(array $config = null)
+    protected function _parseConfigArgs(array|null $config = null)
     {
         $configs = array();
         if (isset($config['private_key_bits'])) {
