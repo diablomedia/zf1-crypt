@@ -1,9 +1,6 @@
 includes:
-    - phpstan-php7.php
-    - phpstan-php8.php
+    - phpstan-baseline.neon
 parameters:
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
     treatPhpDocTypesAsCertain: false
     level: 8
     paths:
@@ -14,6 +11,10 @@ parameters:
     bootstrapFiles:
         - phpstan-constants.php
     ignoreErrors:
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: missingType.generics
         # This does only have one parameter, not sure intent here
         - '#Class Zend_Crypt_Rsa_Key_Public constructor invoked with 2 parameters, 1 required\.#'
         # This should probably be changed to a do/while loop instead of just while, Zend_Crypt_Math_BigInteger_Bcmath:215
@@ -57,15 +58,6 @@ parameters:
             message: '#Parameter \#1 \$(function|callback) of function call_user_func_array expects callable\(\): mixed, array{Zend_Crypt_Math_BigInteger_Interface, string} given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger.php
         -
-            message: '#Parameter \#2 \$(right_operand|num2) of function bcadd expects string, int<0, 255> given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
-        -
-            message: '#Parameter \#2 \$(right_operand|num2) of function bcmul expects string, int given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
-        -
-            message: '#Parameter \#2 \$(right_operand|num2) of function bccomp expects string, int given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
-        -
             message: '#Parameter \#2 \$(right_operand|num2) of function bcmod expects string, int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
@@ -73,9 +65,6 @@ parameters:
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
             message: '#Parameter \#1 \$string of function strlen expects string, float\|int given\.#'
-            path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
-        -
-            message: '#Parameter \#2 \$(right_operand|num2) of function bcadd expects string, float\|int given\.#'
             path: %currentWorkingDirectory%/src/Zend/Crypt/Math/BigInteger/Bcmath.php
         -
             message: '#Parameter \#1 \$(a|num1) of function gmp_add expects GMP\|int\|string, GMP\|resource\|string given\.#'
